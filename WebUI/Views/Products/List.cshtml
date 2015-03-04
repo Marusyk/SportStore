@@ -1,0 +1,19 @@
+﻿@model IEnumerable<DomainModel.Entities.Product>
+
+@{
+    ViewBag.Title = "List";
+}
+    
+<div class="ui_header_text">
+    <h2>Products</h2>
+</div>
+
+<div class="ui_text">Hello. Here are list of products: </div>
+
+@foreach(var product in Model)
+{
+    <div class="item">
+        <h3 class="">@product.Name</h3>5%
+        <h4 class="">@product.Price</h4>
+    </div>
+}
