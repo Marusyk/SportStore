@@ -30,6 +30,8 @@ namespace Tests
             Assert.IsNotNull(result, "Didn't render view");
             var products = result.Model as IList<Product>;
             Assert.AreEqual(2, products.Count, "Got wrong number of products");
+            Assert.AreEqual(2, (int)result.ViewBag.CurrentPage, "Wrong page number");
+            Assert.AreEqual(2, (int)result.ViewBag.TotalPages, "Wrong page count");
             Assert.AreEqual("P4", products[0].Name);
             Assert.AreEqual("P5", products[1].Name);
         }

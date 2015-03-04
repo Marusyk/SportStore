@@ -22,6 +22,9 @@ namespace WebUI.Controllers
 
         public ViewResult List(int page)
         {
+            int numProducts = productRepository.Products.Count();
+            ViewBag.TotalPages = (int)Math.Ceiling((double)numProducts / PageSize);
+            ViewBag.CurrentPage = page;
             return View(productRepository.Products
                                          .Skip((page - 1) * PageSize)
                                          .Take(PageSize)
