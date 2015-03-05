@@ -8,6 +8,7 @@ using NUnit.Framework;
 using WebUI.Controllers;
 using System.Web.Mvc;
 using WebUI.HtmlHelpers;
+using System.Web;
 
 namespace Tests
 {
@@ -21,15 +22,17 @@ namespace Tests
             html.PageLinks(0, 0, null);
         }
 
+        [Test]
         public void PageLinks_Produces_Anchor_Tags()
         {
             // перший параметри буде індекс поточної сторінки
             // другий - загальна кількість сторінок
             // третій - лямбда-метод для відображення номера сторінки 
-            string links = ((HtmlHelper)null).PageLinks(2, 3, i => "Page" + i);
+            HtmlHelper html = null;
+            string links = html.PageLinks(2, 3, i => "Page" + i).ToString();
             Assert.AreEqual(@"<a href=""Page1"">1</a>
 <a class=""selected"" href=""Page2"">2</a>
-<a href=""Page3"">3</a>)
+<a href=""Page3"">3</a>
 ", links);
         }
     }

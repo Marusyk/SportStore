@@ -2,22 +2,25 @@
 
 @{
     ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using WebUI.HtmlHelpers;
     
-<div class="ui_header_text">
-    <h2>Products</h2>
-</div>
-
-<div class="ui_text">Hello. Here are list of products: </div>
-
-@foreach(var product in Model)
+@section TitleContent
 {
-    <div class="item">
-        <h3 class="">@product.Name</h3>5%
-        <h4 class="">@product.Price</h4>
+    Products
+}
+
+@section MainContent
+{
+    @foreach (var product in Model)
+    {
+        <div class="item">
+            <h3 class="">@product.Name</h3>
+            <h4 class="">@product.Price</h4>
+        </div>
+    }
+    <div class="pager">
+     @Html.PageLinks((int)ViewBag.CurrentPage, (int)ViewBag.TotalPages, x => Url.Action("List", new { page = x }))
     </div>
 }
-<div class="pager">
-    @Html.PageLinks((int)ViewBag.CurrentPage, (int)ViewBag.TotalPages, x => Url.Action("List", new { page = x }))
-</div>
+
