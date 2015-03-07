@@ -58,7 +58,7 @@ namespace Tests
             cart.AddItem(new Product { ProductID = 1, Price = 5 }, 10);
             cart.AddItem(new Product { ProductID = 2, Price = 2.1M }, 3);
             cart.AddItem(new Product { ProductID = 3, Price = 1000 }, 1);
-            Assert.AreEqual(1053.3, cart.ComputeTotalValue());
+            Assert.AreEqual(1056.3M, cart.ComputeTotalValue());
         }
 
         [Test]
