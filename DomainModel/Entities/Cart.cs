@@ -9,15 +9,28 @@ namespace DomainModel.Entities
     public class Cart
     {
         private List<CartLine> lines = new List<CartLine>();
-        public IList<CartLine> Lines { get { return lines; } }
-        public void AddItem(Product product, int quantity) { }
+        public IList<CartLine> Lines { get { return lines.AsReadOnly(); } }
+        public void AddItem(Product product, int quantity) 
+        {
+            //FirstOrDefault() - розширяючий метод LINQ на IEnumerable
+            var line = lines.FirstOrDefault(l => l.Product.ProductID == product.ProductID);
+            if (line == null)
+                lines.Add(new CartLine { Product = product, Quantity = quantity });
+            else
+                line.Quantity += quantity;
+        }
         public decimal ComputeTotalValue()
         {
-            throw new NotImplementedException();
+            return lines.Sum(l => l.Product.Price * l.Quantity);
         }
         public void Clear()
         {
-            throw new NotImplementedException();
+            lines.Clear();
+        }
+
+        public void RemoveLine(Product product)
+        {
+            lines.RemoveAll(l => l.Product.ProductID == product.ProductID);
         }
     }
 
