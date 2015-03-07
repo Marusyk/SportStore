@@ -13,7 +13,7 @@
         <div class="titles">SPORTS STORE</div>
     </div>
     <div id="categories">
-        Will put something useful hare later
+        @Html.Action("Menu", "Nav", new { higlightCategory = ViewBag.CurrentCategory })
     </div>
     <div id="content">
         @RenderSection("MainContent")

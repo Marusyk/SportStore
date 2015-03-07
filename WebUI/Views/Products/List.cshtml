@@ -7,20 +7,23 @@
     
 @section TitleContent
 {
-    Products
+    SportsStore :
+    @if (string.IsNullOrEmpty(ViewBag.CurrentCategory))
+    {
+       @: All Products
+    }
+    else
+    {@Html.Encode(ViewBag.CurrentCategory)}
+        
 }
 
 @section MainContent
 {
     @foreach (var product in Model)
     {
-        <div class="item">
-            <h3 class="">@product.Name</h3>
-            <h4 class="">@product.Price</h4>
-        </div>
+        { Html.RenderPartial("ProductSummary", product); }
     }
     <div class="pager">
-     @Html.PageLinks((int)ViewBag.CurrentPage, (int)ViewBag.TotalPages, x => Url.Action("List", new { page = x }))
-    </div>
-}
+     Page: @Html.PageLinks((int)ViewBag.CurrentPage, (int)ViewBag.TotalPages, x => Url.Action("List", new { page = x, category = ViewBag.CurrentCategory }))
+    </div>}
 
