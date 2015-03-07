@@ -60,5 +60,17 @@ namespace Tests
             cart.AddItem(new Product { ProductID = 3, Price = 1000 }, 1);
             Assert.AreEqual(1053.3, cart.ComputeTotalValue());
         }
+
+        [Test]
+        public void Can_Be_Remove_Line()
+        {
+            Cart cart = new Cart();
+            cart.AddItem(new Product { ProductID = 1 }, 1);
+            cart.AddItem(new Product { ProductID = 2 }, 2);
+            Assert.AreEqual(2, cart.Lines.Count);
+            var prod = cart.Lines.Where(l => l.Product.ProductID == 1).First();
+            cart.RemoveLine(prod.Product);
+            Assert.AreEqual(1, cart.Lines.Count);
+        }
     }
 }
