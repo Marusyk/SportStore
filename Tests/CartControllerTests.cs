@@ -70,5 +70,22 @@ namespace Tests
             //підтвердження
             Assert.AreEqual(0, cart.Lines.Count);
         }
+
+        [Test]
+        public void Index_Action_Renders_Default_View_With_Cart_And_ReturnUrl()
+        {
+            //встановлюємо контроллер
+            Cart cart = new Cart();
+            CartController controller = new CartController(null);
+
+            //виклик методу дії
+            ViewResult result = controller.Index(cart, "myReturnUrl");
+
+            //перевірка результів
+            Assert.IsEmpty(result.ViewName);
+            Assert.AreSame(cart, result.ViewData.Model);
+            Assert.AreEqual("myReturnUrl", result.ViewBag.ReturnUrl);
+            Assert.AreEqual("Cart", result.ViewBag.CurrentCategory);
+        }
     }
 }

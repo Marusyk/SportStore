@@ -1,0 +1,46 @@
+﻿@model DomainModel.Entities.Cart
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section TitleContent
+{
+    SportStore : Your Cart
+}
+
+@section MainContent
+{
+    <h2>Your cart</h2>
+    <table width="90%" align="center">
+        <thead>
+            <tr>
+                <th align="center">Quantity</th>
+                <th align="left">Item</th>
+                <th align="right">Price</th>
+                <th align="right">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var line in Model.Lines)
+            {
+                <tr>
+                    <td align="center">@line.Quantity</td>
+                    <td align="left">@line.Product.Name</td>
+                    <td align="right">@line.Product.Price.ToString("c")</td>
+                    <td align="right">@{(line.Quantity * line.Product.Price).ToString(); }</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" align="right">Total:</td>
+                <td align="right">@Model.ComputeTotalValue().ToString("c")</td>
+            </tr>
+        </tfoot>
+    </table>
+    <p align="center" class="actionButtons">
+        <a href="@Html.Encode(ViewBag.ReturnUrl)">Continue shopping </a>
+    </p>
+}
