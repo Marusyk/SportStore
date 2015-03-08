@@ -20,6 +20,7 @@
                 <th align="left">Item</th>
                 <th align="right">Price</th>
                 <th align="right">Subtotal</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +31,14 @@
                     <td align="left">@line.Product.Name</td>
                     <td align="right">@line.Product.Price.ToString("c")</td>
                     <td align="right">@(line.Quantity  * line.Product.Price)</td>
+                    <td>
+                        @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                        {
+                            <input type="hidden" id="ProductID" name="ProductID" value="@line.Product.ProductID" />
+                            <input type="hidden" id="returnUrl" name="returnUrl" value="@ViewBag.ReturnUrl" />
+                            <input type="submit" value="Remove" />
+                        }
+                    </td>
                 </tr>
             }
         </tbody>
