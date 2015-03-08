@@ -5,8 +5,10 @@
     @Model.Description
     @using(Html.BeginForm("AddToCart", "Cart"))
     {
-        Html.Hidden("ProductID");
-        Html.Hidden("returnUrl", ViewContext.HttpContext.Request.Url.PathAndQuery);
+       // Html.Hidden("ProductID", Model.ProductID);
+       // Html.Hidden("returnUrl", ViewContext.HttpContext.Request.Url.PathAndQuery);        
+        <input type="hidden" id="ProductID" name="ProductID" value="@Model.ProductID" />
+        <input type="hidden" id="returnUrl" name="returnUrl" value="@ViewContext.HttpContext.Request.Url.PathAndQuery" />
         <input type="submit" value="+ Add to cart" />
     }
     <h4>@Model.Price.ToString("c") </h4>
