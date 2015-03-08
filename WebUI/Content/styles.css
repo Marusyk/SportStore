@@ -149,3 +149,17 @@ div#cart a {
 div#cart span.summary {
     color: white;
 }
+
+.field-validation-error {
+    color: red;
+}
+
+.input-validation-error {
+    border: 1px solid red;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: red;
+}

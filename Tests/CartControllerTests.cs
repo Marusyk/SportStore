@@ -121,7 +121,7 @@ namespace Tests
             CartController controller = new CartController(null, mockSubmitter.Object);
             Cart cart = new Cart();
             cart.AddItem(new Product(), 1);
-            var fromData = new FormCollection
+            var formData = new FormCollection
             {
                 { "Name", "Steve" }, { "Line1", "123 My Street" },
                 { "Line2", "MyArea"}, { "Line3", "" },
@@ -130,11 +130,11 @@ namespace Tests
                 { "GiftWrap", bool.TrueString }
             };
 
-            var result = controller.CheckOut(cart, fromData);
+           var result = controller.CheckOut(cart, formData);
 
-            Assert.AreEqual("Completed", result.ViewName);
-            mockSubmitter.Verify(x => x.SubmitOrder(cart));
-            Assert.AreEqual(0, cart.Lines.Count);
+           Assert.AreEqual("Completed", result.ViewName);
+           mockSubmitter.Verify(x => x.SubmitOrder(cart));
+           Assert.AreEqual(0, cart.Lines.Count);
         }
     }
 }
