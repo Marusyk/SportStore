@@ -26,7 +26,7 @@ namespace Tests
             };
             mockProductsRepos.Setup(x => x.Products).Returns(products.AsQueryable());
             var cart = new Cart();
-            var controller = new CartController(mockProductsRepos.Object);
+            var controller = new CartController(mockProductsRepos.Object, null);
 
             //дія: спроба додати товар в кошик
             RedirectToRouteResult result = controller.AddToCart(cart, 27, "someReturnUrl");
@@ -51,7 +51,7 @@ namespace Tests
             };
             mockProductsRepos.Setup(x => x.Products).Returns(products.AsQueryable());
             var cart = new Cart();
-            var controller = new CartController(mockProductsRepos.Object);
+            var controller = new CartController(mockProductsRepos.Object, null);
 
             //дія: спроба додати товар в кошик
             RedirectToRouteResult result = controller.AddToCart(cart, 27, "someReturnUrl");
@@ -76,7 +76,7 @@ namespace Tests
         {
             //встановлюємо контроллер
             Cart cart = new Cart();
-            CartController controller = new CartController(null);
+            CartController controller = new CartController(null, null);
 
             //виклик методу дії
             ViewResult result = controller.Index(cart, "myReturnUrl");
