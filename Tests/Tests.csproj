@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CartController.cs" />
     <Compile Include="CartControllerTests.cs" />
     <Compile Include="CartTests.cs" />
     <Compile Include="InboundRoutingTests.cs" />

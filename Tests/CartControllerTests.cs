@@ -54,7 +54,7 @@ namespace Tests
             var controller = new CartController(mockProductsRepos.Object);
 
             //дія: спроба додати товар в кошик
-            RedirectToRouteResult result = controller,RemoveFromCart(cart, 27, "someReturnUrl");
+            RedirectToRouteResult result = controller.AddToCart(cart, 27, "someReturnUrl");
 
             //підтвердження
             Assert.AreEqual(1, cart.Lines.Count);
@@ -63,6 +63,12 @@ namespace Tests
             // перевірити що користувач направлений на екран корзини
             Assert.AreEqual("Index", result.RouteValues["action"]);
             Assert.AreEqual("someReturnUrl", result.RouteValues["returnUrl"]);
+
+            //дія: спроба видалити товар з кошика
+            result = controller.RemoveFromCart(cart, 27, "someReturnUrl");
+
+            //підтвердження
+            Assert.AreEqual(0, cart.Lines.Count);
         }
     }
 }
