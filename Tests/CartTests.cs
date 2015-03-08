@@ -72,5 +72,27 @@ namespace Tests
             cart.RemoveLine(prod.Product);
             Assert.AreEqual(1, cart.Lines.Count);
         }
+
+        [Test]
+        public void Cart_Shipping_Details_Start_Empty()
+        {
+            Cart cart = new Cart();
+            ShippingDetails d = cart.ShippingDetails;
+            Assert.IsNull(d.Name);
+            Assert.IsNull(d.Line1);
+            Assert.IsNull(d.Line2);
+            Assert.IsNull(d.Line3);
+            Assert.IsNull(d.City);
+            Assert.IsNull(d.State);
+            Assert.IsNull(d.Country);
+            Assert.IsNull(d.Zip);
+        }
+
+        [Test]
+        public void Cart_Not_GiftWrapped_By_Default()
+        {
+            Cart cart = new Cart();
+            Assert.IsFalse(cart.ShippingDetails.GiftWrap);
+        }
     }
 }

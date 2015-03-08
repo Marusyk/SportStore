@@ -10,6 +10,9 @@ namespace DomainModel.Entities
     {
         private List<CartLine> lines = new List<CartLine>();
         public IList<CartLine> Lines { get { return lines.AsReadOnly(); } }
+
+        private ShippingDetails shippingDetails = new ShippingDetails();
+        public ShippingDetails ShippingDetails { get { return shippingDetails; } }
         public void AddItem(Product product, int quantity) 
         {
             //FirstOrDefault() - розширяючий метод LINQ на IEnumerable
