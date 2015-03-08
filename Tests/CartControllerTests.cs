@@ -9,6 +9,7 @@ using WebUI.Controllers;
 using DomainModel.Abstract;
 using DomainModel.Entities;
 using System.Web.Mvc;
+using DomainModel.Services;
 
 namespace Tests
 {
@@ -86,6 +87,54 @@ namespace Tests
             Assert.AreSame(cart, result.ViewData.Model);
             Assert.AreEqual("myReturnUrl", result.ViewBag.ReturnUrl);
             Assert.AreEqual("Cart", result.ViewBag.CurrentCategory);
+        }
+
+        [Test]
+        public void Submitting_Order_With_No_Lines_Displays_Default_View_With_Error()
+        {
+            CartController controller = new CartController(null, null);
+            Cart cart = new Cart();
+
+            var result = controller.CheckOut(cart, new FormCollection());
+
+            Assert.IsEmpty(result.ViewName);
+            Assert.IsFalse(result.ViewData.ModelState.IsValid);
+        }
+
+        [Test]
+        public void Submitting_Empty_Shipping_Details_Displays_Default_View_With_Error()
+        {
+            CartController controller = new CartController(null, null);
+            Cart cart = new Cart();
+            cart.AddItem(new Product(), 1);
+
+            var result = controller.CheckOut(cart, new FormCollection { { "Name", "TEST"} });
+
+            Assert.IsEmpty(result.ViewName);
+            Assert.IsFalse(result.ViewData.ModelState.IsValid);
+        }
+
+        [Test]
+        public void Valid_Order_Goes_To_Submitter_And_Displays_Completed_View()
+        {
+            var mockSubmitter = new Mock<IOrderSubmitter>();
+            CartController controller = new CartController(null, mockSubmitter.Object);
+            Cart cart = new Cart();
+            cart.AddItem(new Product(), 1);
+            var fromData = new FormCollection
+            {
+                { "Name", "Steve" }, { "Line1", "123 My Street" },
+                { "Line2", "MyArea"}, { "Line3", "" },
+                { "City", "MyCity" }, { "State", "Some State" },
+                { "Zip", "123ABCDEF" }, { "Country", "Far from away" },
+                { "GiftWrap", bool.TrueString }
+            };
+
+            var result = controller.CheckOut(cart, fromData);
+
+            Assert.AreEqual("Completed", result.ViewName);
+            mockSubmitter.Verify(x => x.SubmitOrder(cart));
+            Assert.AreEqual(0, cart.Lines.Count);
         }
     }
 }
