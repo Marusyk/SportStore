@@ -104,7 +104,9 @@ namespace Tests
         [Test]
         public void Submitting_Empty_Shipping_Details_Displays_Default_View_With_Error()
         {
+            var controllerContext = new Moq.Mock<ControllerContext>(); 
             CartController controller = new CartController(null, null);
+            controller.ControllerContext = controllerContext.Object;
             Cart cart = new Cart();
             cart.AddItem(new Product(), 1);
 
@@ -117,8 +119,11 @@ namespace Tests
         [Test]
         public void Valid_Order_Goes_To_Submitter_And_Displays_Completed_View()
         {
+            var controllerContext = new Moq.Mock<ControllerContext>(); 
+            
             var mockSubmitter = new Mock<IOrderSubmitter>();
             CartController controller = new CartController(null, mockSubmitter.Object);
+            controller.ControllerContext = controllerContext.Object;
             Cart cart = new Cart();
             cart.AddItem(new Product(), 1);
             var formData = new FormCollection
