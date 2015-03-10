@@ -16,15 +16,17 @@
     @using(Html.BeginForm())
     {
         <h3>Ship to</h3>
-        <div>Name: @Html.TextBox("Name")</div>
-        <h3>Address</h3>
-        <div>Line 1: @Html.TextBox("Line1")</div>
-        <div>Line 2: @Html.TextBox("Line2")</div>
-        <div>Line 3: @Html.TextBox("Line3")</div>
-        <div>City: @Html.TextBox("City")</div>
-        <div>State: @Html.TextBox("State")</div>
-        <div>Zip: @Html.TextBox("Zip")</div>
-        <div>Country: @Html.TextBox("Country")</div>
+        <div id="test">
+            <label>Name</label>@Html.TextBox("Name")
+            <h3>Address</h3>
+            <label>Line 1:</label>@Html.TextBox("Line1") <br />
+            <label>Line 2:</label>@Html.TextBox("Line2") <br />
+            <label>Line 3:</label>@Html.TextBox("Line3") <br />
+            <label>City:</label>@Html.TextBox("City") <br />
+            <label>State:</label>@Html.TextBox("State") <br />
+            <label>Zip:</label>@Html.TextBox("Zip") <br />
+            <label>Country:</label>@Html.TextBox("Country") <br />
+        </div>
         <h3>Options</h3>
         @Html.CheckBox("GiftWrap") @:Gift wrap these items
         <p align="center"><input type="submit" value="Complete order" /></p>
