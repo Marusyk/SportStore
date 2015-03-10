@@ -1,4 +1,5 @@
 ﻿using DomainModel.Entities;
+using PartyInvites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace WebUI
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             ControllerBuilder.Current.SetControllerFactory(new WindsorControllerFactory());
             ModelBinders.Binders.Add(typeof(Cart), new CartModelBinder());
