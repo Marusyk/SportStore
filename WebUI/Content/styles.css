@@ -150,8 +150,15 @@ div#cart span.summary {
     color: white;
 }
 
+.field-validation-error:before {
+    color: red;
+    font-weight: bold;
+    content: "● "
+}
+
 .field-validation-error {
     color: red;
+    font-weight: bold;і
 }
 
 .input-validation-error {
@@ -164,7 +171,7 @@ div#cart span.summary {
     color: red;
 }
 
-div#test label{
+div#test label {
   display: inline-block; 
   width: 80px; 
   text-align: left;

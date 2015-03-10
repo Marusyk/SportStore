@@ -12,20 +12,26 @@
 {
     <h2>Check out now</h2>
     Please enter your details, and we'll ship your goods right away!
-    @Html.ValidationSummary()
     @using(Html.BeginForm())
     {
         <h3>Ship to</h3>
         <div id="test">
-            <label>Name</label>@Html.TextBox("Name")
+            <label>Name*</label>@Html.TextBox("Name") @Html.ValidationMessage("Name")
             <h3>Address</h3>
-            <label>Line 1:</label>@Html.TextBox("Line1") <br />
-            <label>Line 2:</label>@Html.TextBox("Line2") <br />
-            <label>Line 3:</label>@Html.TextBox("Line3") <br />
-            <label>City:</label>@Html.TextBox("City") <br />
-            <label>State:</label>@Html.TextBox("State") <br />
-            <label>Zip:</label>@Html.TextBox("Zip") <br />
-            <label>Country:</label>@Html.TextBox("Country") <br />
+            <label>Line 1*:</label>@Html.TextBox("Line1")  @Html.ValidationMessage("Line1")
+            <br />
+            <label>Line 2:</label>@Html.TextBox("Line2")
+            <br />
+            <label>Line 3:</label>@Html.TextBox("Line3")
+            <br />
+            <label>City*:</label>@Html.TextBox("City") @Html.ValidationMessage("City")
+            <br />
+            <label>State*:</label>@Html.TextBox("State") @Html.ValidationMessage("State")
+            <br />
+            <label>Zip:</label>@Html.TextBox("Zip")
+            <br />
+            <label>Country*:</label>@Html.TextBox("Country") @Html.ValidationMessage("Country")
+            <br />
         </div>
         <h3>Options</h3>
         @Html.CheckBox("GiftWrap") @:Gift wrap these items
