@@ -39,7 +39,7 @@ namespace Tests
 
             Assert.IsEmpty(results.ViewName);
             var prodsRendered = (List<Product>)results.ViewData.Model;
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 49; i++)
                 Assert.AreEqual("Product " + (i + 1), prodsRendered[i].Name);
 
         }

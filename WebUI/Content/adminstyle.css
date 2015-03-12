@@ -1,0 +1,51 @@
+﻿body, td {
+    font-family: 'Segoe UI', Verdana;
+}
+
+h1 {
+    padding: .5em;
+    padding-top: 0;
+    font-weight: bold;
+    font-size: 1.5em;
+    border-bottom: 2px solid gray;
+}
+
+div#content {
+    padding: .9em;
+}
+
+table.grid td. table.grid th {
+    border-bottom: 1px dotted gray;
+    text-align:left;
+}
+
+table.grid {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table.grid th.numericCol, table.grid td.numericCol {
+    text-align: right;
+    padding-right: 1em;
+}
+
+div.message {
+    background: gray;
+    color: white;
+    padding: .2em;
+    margin-top: .25em;
+}
+
+.field-validation-error {
+    color: red;
+}
+
+.input-validation-error {
+    border: 1px solid red;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors{
+    font-weight: bold;
+    color: red;
+}

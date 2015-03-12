@@ -21,7 +21,7 @@ namespace WebUI.Controllers
 
         public ViewResult Index()
         {
-            return View();
+            return View(productRepository.Products.ToList());
         }
     }
 }
