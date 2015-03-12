@@ -14,7 +14,7 @@ div#content {
     padding: .9em;
 }
 
-table.grid td. table.grid th {
+table.grid td,  table.grid th {
     border-bottom: 1px dotted gray;
     text-align:left;
 }
