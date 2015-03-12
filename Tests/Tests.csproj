@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminControllerTests.cs" />
     <Compile Include="CartControllerTests.cs" />
     <Compile Include="CartTests.cs" />
     <Compile Include="InboundRoutingTests.cs" />

@@ -19,7 +19,7 @@ namespace WebUI.Controllers
             productRepository = prodRepos;
         }
 
-        public ActionResult Index()
+        public ViewResult Index()
         {
             return View();
         }
