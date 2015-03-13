@@ -43,5 +43,15 @@ namespace Tests
                 Assert.AreEqual("Product " + (i + 1), prodsRendered[i].Name);
 
         }
+
+        [Test]
+        public void Action_Edit()
+        {
+            AdminController controller = new AdminController(mockRepos.Object);
+            ViewResult results = controller.Edit(17);
+            Product renderProduct = (Product)results.ViewData.Model;
+            Assert.AreEqual(17, renderProduct.ProductID);
+            Assert.AreEqual("Product 17", renderProduct.Name);
+        }
     }
 }
