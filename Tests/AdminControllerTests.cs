@@ -53,5 +53,17 @@ namespace Tests
             Assert.AreEqual(17, renderProduct.ProductID);
             Assert.AreEqual("Product 17", renderProduct.Name);
         }
+
+        [Test]
+        public void Edit_Action_Saves_Product_To_Repository_And_Redirect_To_Index()
+        {
+            AdminController controller = new AdminController(mockRepos.Object);
+            Product newProduct = new Product();
+
+            var result = (RedirectToRouteResult)controller.Edit(newProduct);
+
+            mockRepos.Verify(x => x.SaveProduct(newProduct));
+            Assert.AreEqual("Index", result.RouteValues["action"]);
+        }
     }
 }
