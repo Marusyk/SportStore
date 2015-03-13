@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DomainModel.Abstract;
 using DomainModel.Entities;
 using System.Data.Linq;
+using System.ComponentModel;
 
 namespace DomainModel.Concrete
 {
@@ -25,6 +26,7 @@ namespace DomainModel.Concrete
 
         public void SaveProduct(Product product)
         {
+            EnsureValid(product, "Name", "Description", "Category", "Price");
             if (product.ProductID == 0)
                 productTable.InsertOnSubmit(product);
             else
@@ -35,6 +37,12 @@ namespace DomainModel.Concrete
                 productTable.Context.Refresh(RefreshMode.KeepCurrentValues, product);
             }
             productTable.Context.SubmitChanges();
+        }
+
+        public void EnsureValid(IDataErrorInfo validateble, params string[] properties)
+        {
+            if (properties.Any(x => validateble[x] != null))
+                throw new InvalidOperationException("The object is invalid.");
         }
     }
 }
