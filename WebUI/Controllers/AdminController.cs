@@ -33,5 +33,20 @@ namespace WebUI.Controllers
                                select p).First();
             return View(product);
         }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Edit(Product product)
+        {
+            if(ModelState.IsValid)
+            {
+                productRepository.SaveProduct(product);
+                TempData["message"] = product.Name + " has been saved.";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
+        }
     }
 }

@@ -9,6 +9,10 @@
     <title>@RenderSection("TitleContent")</title>
 </head>
 <body>
+    @if(TempData["message"] != null)
+    {
+        <div class="message">@Html.Encode(TempData["message"])</div>
+    }
     <div id="content">
         @RenderSection("MainContent")
     </div>

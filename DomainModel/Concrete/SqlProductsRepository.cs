@@ -22,5 +22,19 @@ namespace DomainModel.Concrete
         {
             get { return productTable; }
         }
+
+        public void SaveProduct(Product product)
+        {
+            if (product.ProductID == 0)
+                productTable.InsertOnSubmit(product);
+            else
+            {
+                // якщо обновляється існуючий товар, доручити DataContext збереження цього екземпляра
+                productTable.Attach(product);
+                // також доручити DataContext виявлення змін з моменту останнього збереження
+                productTable.Context.Refresh(RefreshMode.KeepCurrentValues, product);
+            }
+            productTable.Context.SubmitChanges();
+        }
     }
 }

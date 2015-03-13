@@ -20,5 +20,10 @@ namespace DomainModel.Concrete
         {
             get { return fakeProducts; }
         }
+
+        public void SaveProduct(Product product)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
