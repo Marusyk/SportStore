@@ -45,7 +45,7 @@ namespace WebUI.Controllers
             }
             else
             {
-                return View();
+                return View(product);
             }
         }
     }

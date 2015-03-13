@@ -7,32 +7,42 @@
 
 @section TitleContent
 {
-    Admin : Edit @Model.Name
+    Admin : Edit @Model.Name 
 }
 
 @section MainContent
 {
     <h1>Edit @Model.Name</h1>
+    <table>
     @using (Html.BeginForm())
     {
         @Html.Hidden("ProductID")
-        <p>
-            Name: @Html.TextBox("Name")
-            <div>@Html.ValidationMessage("Name")</div>
-        </p>
-        <p>
-            Description: @Html.TextArea("Description", null, 4, 20, null)
-            <div>@Html.ValidationMessage("Descriptiom")</div>
-        </p>
-        <p>
-            Price: @Html.TextBox("Price")
-            <div>@Html.ValidationMessage("Price")</div>
-        </p>
-        <p>
-            Category: @Html.TextBox("Category")
-            <div>@Html.ValidationMessage("Category")</div>
-        </p>
-        <input type="submit" value="Save" /> @:&nbsp;&nbsp;
-        @Html.ActionLink("Cancel and return to List", "Index")
+
+        <tr>
+            <td>Name</td>
+            <td>@Html.TextBox("Name")</td>
+            <td><div>@Html.ValidationMessage("Name")</div></td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>@Html.TextArea("Description", null, 4, 21, null)</td>
+            <td><div>@Html.ValidationMessage("Descriptiom")</div></td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td>@Html.TextBox("Price")</td>
+            <td><div>@Html.ValidationMessage("Price")</div></td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td>@Html.TextBox("Category")</td>
+            <td>@Html.ValidationMessage("Category")</td>
+        </tr>
+        <tr>
+          <td><input type="submit" value="Save" /></td>
+          <td>@Html.ActionLink("Cancel and return to List", "Index")</td>
+        </tr>
+        
     }
+    </table>
 }
