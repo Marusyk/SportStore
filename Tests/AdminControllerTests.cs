@@ -65,5 +65,19 @@ namespace Tests
             mockRepos.Verify(x => x.SaveProduct(newProduct));
             Assert.AreEqual("Index", result.RouteValues["action"]);
         }
+
+        [Test]
+        public void Delete_Action_Deletes_Product_Then_Redierects_To_Index()
+        {
+            AdminController controller = new AdminController(mockRepos.Object);
+            Product prod24 = mockRepos.Object.Products.First(p => p.ProductID == 24);
+
+            RedirectToRouteResult result = controller.Delete(24);
+
+            Assert.AreEqual("Index", result.RouteValues["action"]);
+            Assert.AreEqual("Product 24 has been deleted", controller.TempData["message"]);
+            mockRepos.Verify(x => x.DeleteProduct(prod24));
+        }
+
     }
 }

@@ -53,5 +53,15 @@ namespace WebUI.Controllers
         {
             return View("Edit", new Product());
         }
+
+        public RedirectToRouteResult Delete(int productID)
+        {
+            Product product = (from p in productRepository.Products
+                               where p.ProductID == productID
+                               select p).First();
+            productRepository.DeleteProduct(product);
+            TempData["message"] = product.Name + " has been deleted.";
+            return RedirectToAction("Index");
+        }
     }
 }

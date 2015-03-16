@@ -25,5 +25,11 @@ namespace DomainModel.Concrete
         {
             throw new NotImplementedException();
         }
+
+
+        public void DeleteProduct(Product product)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

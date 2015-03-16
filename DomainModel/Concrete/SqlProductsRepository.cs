@@ -44,5 +44,11 @@ namespace DomainModel.Concrete
             if (properties.Any(x => validateble[x] != null))
                 throw new InvalidOperationException("The object is invalid.");
         }
+
+        public void DeleteProduct(Product product)
+        {
+            productTable.DeleteOnSubmit(product);
+            productTable.Context.SubmitChanges();
+        }
     }
 }
