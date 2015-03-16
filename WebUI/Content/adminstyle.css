@@ -49,3 +49,10 @@ div.message {
     font-weight: bold;
     color: red;
 }
+
+div#test label {
+  display: inline-block; 
+  width: 100px; 
+  text-align: left;
+  margin: .2em;
+}

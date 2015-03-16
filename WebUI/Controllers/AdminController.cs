@@ -16,19 +16,16 @@ namespace WebUI.Controllers
 
         private IProductsRepository productRepository;
 
-        [Authorize]
         public AdminController(IProductsRepository prodRepos)
         {
             productRepository = prodRepos;
         }
 
-        [Authorize]
         public ViewResult Index()
         {
             return View(productRepository.Products.ToList());
         }
 
-        [Authorize]
         [AcceptVerbs(HttpVerbs.Get)]
         public ViewResult Edit(int productID)
         {
@@ -38,7 +35,6 @@ namespace WebUI.Controllers
             return View(product);
         }
 
-        [Authorize]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(Product product)
         {
@@ -54,13 +50,11 @@ namespace WebUI.Controllers
             }
         }
 
-        [Authorize]
         public ViewResult Create()
         {
             return View("Edit", new Product());
         }
 
-        [Authorize]
         public RedirectToRouteResult Delete(int productID)
         {
             Product product = (from p in productRepository.Products
