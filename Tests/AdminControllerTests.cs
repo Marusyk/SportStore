@@ -75,7 +75,7 @@ namespace Tests
             RedirectToRouteResult result = controller.Delete(24);
 
             Assert.AreEqual("Index", result.RouteValues["action"]);
-            Assert.AreEqual("Product 24 has been deleted", controller.TempData["message"]);
+            Assert.AreEqual("Product 24 has been deleted.", controller.TempData["message"]);
             mockRepos.Verify(x => x.DeleteProduct(prod24));
         }
 
