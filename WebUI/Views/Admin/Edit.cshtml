@@ -14,7 +14,7 @@
 {
     <h1>Edit @Model.Name</h1>
     <table>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Edit", "Admin"))
     {
         @Html.Hidden("ProductID")
 
