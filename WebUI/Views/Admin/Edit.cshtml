@@ -39,6 +39,21 @@
             <td>@Html.ValidationMessage("Category")</td>
         </tr>
         <tr>
+            <td>Image</td>
+            <td>@if(Model.ImageData == null)
+                {
+                    @:None
+                }
+                else
+                {
+                    <img src="@Url.Action("GetImage", "Products", new { Model.ProductID })" />
+                }
+            </td>
+            <td>
+                Upload new image: <input type="file" name="Image" />
+            </td>
+        </tr>
+        <tr>
           <td><input type="submit" value="Save" /></td>
           <td>@Html.ActionLink("Cancel and return to List", "Index")</td>
         </tr>

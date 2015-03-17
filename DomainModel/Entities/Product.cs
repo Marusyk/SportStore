@@ -17,6 +17,8 @@ namespace DomainModel.Entities
         [Column] public string Description { get; set; }
         [Column] public decimal Price { get; set; }
         [Column] public string Category { get; set; }
+        [Column] public byte[] ImageData { get; set; }
+        [Column] public string ImageMimeType { get; set; }
 
         public string this[string propName]
         {
