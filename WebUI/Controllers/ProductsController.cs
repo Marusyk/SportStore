@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DomainModel.Abstract;
 using DomainModel.Concrete;
+using DomainModel.Entities;
 
 namespace WebUI.Controllers
 {
@@ -34,6 +35,14 @@ namespace WebUI.Controllers
                                          .Take(PageSize)
                                          .ToList()
                        );
+        }
+
+        public FileContentResult GetImage(int productID)
+        {
+            Product product = (from p in productRepository.Products
+                               where p.ProductID == productID
+                               select p).First();
+            return File(product.ImageData, product.ImageMimeType);
         }
     }
 }
