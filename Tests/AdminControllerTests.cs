@@ -60,7 +60,7 @@ namespace Tests
             AdminController controller = new AdminController(mockRepos.Object);
             Product newProduct = new Product();
 
-            var result = (RedirectToRouteResult)controller.Edit(newProduct);
+            var result = (RedirectToRouteResult)controller.Edit(newProduct, null);
 
             mockRepos.Verify(x => x.SaveProduct(newProduct));
             Assert.AreEqual("Index", result.RouteValues["action"]);

@@ -14,7 +14,7 @@
 {
     <h1>Edit @Model.Name</h1>
     <table>
-    @using (Html.BeginForm("Edit", "Admin"))
+    @using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.Hidden("ProductID")
 
@@ -40,7 +40,7 @@
         </tr>
         <tr>
             <td>Image</td>
-            <td>@if(Model.ImageData == null)
+            <td>@if (Model.ImageData == null)
                 {
                     @:None
                 }
