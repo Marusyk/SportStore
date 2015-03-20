@@ -39,10 +39,10 @@ namespace WebUI.Controllers
 
         public FileContentResult GetImage(int productID)
         {
-            Product product = (from p in productRepository.Products
-                               where p.ProductID == productID
-                               select p).First();
-            return File(product.ImageData, product.ImageMimeType);
+            Product product = productRepository.Products.FirstOrDefault(p => p.ProductID == productID);
+            if (product != null)
+                return File(product.ImageData, product.ImageMimeType);
+            else return null;
         }
     }
 }
